@@ -2,8 +2,8 @@
 
 Setup your environment :
 
-  rake setup WORKING_DIR=/var/tmp/streambox
+  rake setup WORKING_DIR=/var/tmp/stagebox
 
-Create a streambox disk image (in dist/) :
+Create a stagebox disk image (in dist/) :
 
-  rake streambox:dist
+  rake stagebox:dist

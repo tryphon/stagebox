@@ -6,7 +6,7 @@ import "box"
 
 $source_base="/tmp/puppet"
 
-$box_name="streambox"
+$box_name="stagebox"
 
 include release
 include users

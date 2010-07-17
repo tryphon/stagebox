@@ -1,19 +1,8 @@
 <VirtualHost *:80>      
-  ServerName streambox.local
+  ServerName stagebox.local
   ServerAdmin support@tryphon.eu
 
-  DNSSDServiceName "Tryphon StreamBox"
-
-  DocumentRoot /usr/share/streamcontrol/public
-  PassengerDefaultUser www-data
-  PassengerMaxPoolSize 3
-  PassengerMaxRequests 10000
-  PassengerLogLevel 3
-  <Directory /usr/share/streamcontrol/public>
-     AllowOverride None
-     Order allow,deny
-     Allow from all
-  </Directory>
+  DNSSDServiceName "Tryphon StageBox"
 
 	Alias /munin /var/www/munin
 	<Directory /var/www/munin>
