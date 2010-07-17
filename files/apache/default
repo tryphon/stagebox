@@ -1,0 +1,35 @@
+<VirtualHost *:80>      
+  ServerName streambox.local
+  ServerAdmin support@tryphon.eu
+
+  DNSSDServiceName "Tryphon StreamBox"
+
+  DocumentRoot /usr/share/streamcontrol/public
+  PassengerDefaultUser www-data
+  PassengerMaxPoolSize 3
+  PassengerMaxRequests 10000
+  PassengerLogLevel 3
+  <Directory /usr/share/streamcontrol/public>
+     AllowOverride None
+     Order allow,deny
+     Allow from all
+  </Directory>
+
+	Alias /munin /var/www/munin
+	<Directory /var/www/munin>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+  <Location /munin>
+    PassengerEnabled off
+  </Location>
+
+  LogLevel warn
+
+  # Use only syslog
+  ErrorLog syslog
+  CustomLog "|/usr/bin/logger -p local1.info -t apache2/access" combined
+</VirtualHost>

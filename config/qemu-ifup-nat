@@ -1,0 +1,24 @@
+#!/bin/sh -x
+
+if [ "$USER" != "root" -o "$1" != "sudo" ]; then
+  exec sudo -p "Password for $0:" $0 sudo $1
+fi
+
+[ "$1" = "sudo" ] && shift
+
+/sbin/ifconfig $1 172.20.0.1
+
+interfaces=`/sbin/ifconfig -s | awk '/^eth/ { print $1 }'`
+
+for tun_interface in `/sbin/ifconfig -s | awk '/^tun/ { print $1 }'`; do
+    /sbin/ifconfig $tun_interface | grep -q "172.20."
+    if [ $? == 0 ]; then
+        interfaces="$interfaces $tun_interface"
+    fi
+done
+
+for interface in $interfaces; do
+    /sbin/iptables -t nat -A POSTROUTING -s 172.20.0.1/24 -o $interface -j MASQUERADE
+done
+
+/sbin/sysctl -w net.ipv4.ip_forward=1

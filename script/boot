@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+class TapDevice < Struct.new(:name)
+  def exists?
+    IO.readlines('/proc/net/dev').any? { |l| l =~ /\s+#{name}/ }
+  end
+
+  def create
+    system "sudo tunctl -u #{ENV['USER']} -t #{name}" unless exists?
+    self
+  end
+  
+  def to_s
+    name
+  end
+end
+
+tap_device = TapDevice.new("tap0").create
+
+network_mode="nat"
+
+tap_options = []
+tap_options << "ifname=#{tap_device}"
+tap_options << "script=config/qemu-ifup-#{network_mode}" if File.exists? "config/qemu-ifup-#{network_mode}"
+tap_options << "downscript=config/qemu-ifdown" if File.exists? "config/qemu-ifdown-#{network_mode}"
+
+network_options="-net nic,vlan=0 -net tap,#{tap_options.join(',')}"
+
+ENV['QEMU_AUDIO_DRV']='oss'
+
+unless ARGV.first == "iso"
+  disk_option="-drive file=dist/disk,if=ide,index=0,media=disk"
+else
+  disk_option="-cdrom dist/iso"
+end
+
+qemu_command = "qemu -enable-kvm -m 512m #{disk_option} -soundhw ac97 #{network_options}"
+
+puts "Run #{qemu_command}"
+system qemu_command
