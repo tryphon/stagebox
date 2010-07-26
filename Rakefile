@@ -85,3 +85,12 @@ namespace :dist do
     sh "tar -cf dist/upgrade.tar --dereference -C dist/upgrade ."
   end
 end
+
+namespace :stagebox do
+  namespace :storage do
+    desc "Create storage disk"
+    task :create do
+      sh "qemu-img create -f qcow2 dist/storage 10G"
+    end
+  end
+end

@@ -31,8 +31,9 @@ include alsa::common
 
 $darkice_user = "stream"
 include darkice::full
-include apache
-include apache::dnssd
+include icecast2
 
 include munin::readonly
 include munin-node::local
+
+include pige

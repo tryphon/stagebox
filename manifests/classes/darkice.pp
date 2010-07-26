@@ -1,6 +1,7 @@
 class darkice::common {
   file { "/etc/darkice/darkice.cfg":
-    ensure => "/var/etc/darkice/darkice.cfg"
+    source => "$source_base/files/darkice/darkice.cfg",
+    require => File["/etc/darkice"]
   }
 
   file { "/etc/darkice":
@@ -20,6 +21,11 @@ class darkice::common {
   file { "/etc/default/darkice":
     source => "$source_base/files/darkice/darkice.default",
     require => User[$darkice_user]
+  }
+
+  exec { "update-rc.d-darkice-boot":
+    command => "update-rc.d darkice defaults 21 19",
+    require => File["/etc/init.d/darkice"]
   }
 }
 
