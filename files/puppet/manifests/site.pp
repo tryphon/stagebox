@@ -75,3 +75,9 @@ service { "munin-node":
   ensure => running,
   hasrestart => true
 }
+
+file { "/srv/pige/records":
+  ensure => directory,
+  owner => pige,
+  tag => boot
+}
