@@ -15,4 +15,10 @@ class icecast2 {
     require => Package[icecast2]
   }
 
+  file { "/var/log.model/icecast2": 
+    ensure => directory, 
+    owner => icecast2,
+    require => Package[icecast2]
+  }
+
 }
