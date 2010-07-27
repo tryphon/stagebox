@@ -42,3 +42,10 @@ class darkice {
   include darkice::common
   package { darkice: }
 }
+
+class darkice::safe {
+  file { "/usr/bin/darkice-safe":
+    source => "$source_base/files/darkice/darkice-safe",
+    mode => 775
+  }
+}

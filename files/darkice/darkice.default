@@ -11,4 +11,4 @@ DAEMON_OPTS="-c /etc/darkice/darkice.cfg --pidfile $PIDFILE"
 USER=root
 GROUP=audio
 
-#DAEMON=/usr/bin/darkice-safe
+DAEMON=/usr/bin/darkice-safe

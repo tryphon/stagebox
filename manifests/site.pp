@@ -31,6 +31,7 @@ include alsa::common
 
 $darkice_user = "stream"
 include darkice::full
+include darkice::safe
 include icecast2
 
 include munin::readonly
