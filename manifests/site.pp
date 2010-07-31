@@ -18,6 +18,7 @@ include syslog
 include smtp
 include nano
 include ssh
+include ntp::readonly
 
 include dbus::readonly
 include avahi
