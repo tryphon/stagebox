@@ -69,6 +69,8 @@ class pige::cron {
 }
 
 class pige::storage {
+  include ::storage
+
   file { "/srv/pige":
     ensure => directory
   }
@@ -77,6 +79,28 @@ class pige::storage {
     file => "/etc/fstab",
     line => "LABEL=pige /srv/pige ext3 defaults 0 0"
   }
+
+  include pige::storage::rsync
+}
+
+class pige::storage::rsync {
+  include ::rsync
+
+  file { "/etc/rsyncd.conf":
+    source => "$source_base/files/rsync/rsyncd.conf"
+  }
+
+  file { "/etc/default/rsync":
+    source => "$source_base/files/rsync/rsync.default"
+  }
+
+  service { rsync: 
+    ensure => running,
+    require => Package[rsync],
+    subscribe => [File["/etc/rsyncd.conf"], File["/etc/default/rsync"]],
+    hasrestart => true
+  }
+
 }
 
 #class pige::frontend {
