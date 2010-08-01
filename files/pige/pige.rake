@@ -126,10 +126,10 @@ class Cleaner
     if (missing_free_space = minimum_free_space - free_space) > 0
       maximum_used_space = (@ogg_group.total_size + @wav_group.total_size) - missing_free_space
       
-      if @ogg_group.reduce(maximum_used_space * 0.9)
-        @wav_group.reduce(maximum_used_space * 0.1)
+      if @wav_group.reduce(maximum_used_space * 0.8)
+        @ogg_group.reduce(maximum_used_space * 0.2)
       else
-        @wav_group.reduce(maximum_used_space - @ogg_group.total_size)
+        @ogg_group.reduce(maximum_used_space - @wav_group.total_size)
       end
 
       PigeCron.logger.info "free space after: #{free_space.in_gigabytes} gigabytes (wav: #{@wav_group.total_size.in_gigabytes}, ogg: #{@ogg_group.total_size.in_gigabytes})"
