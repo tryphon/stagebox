@@ -92,12 +92,4 @@ class pige::storage::rsyncd {
   file { "/etc/default/rsync":
     source => "$source_base/files/rsync/rsync.default"
   }
-
-  service { rsync: 
-    ensure => running,
-    require => Package[rsync],
-    subscribe => [File["/etc/rsyncd.conf"], File["/etc/default/rsync"]],
-    hasrestart => true
-  }
-
 }
