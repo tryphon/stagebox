@@ -1,3 +1,0 @@
-class nano {
-  package { nano: }
-}

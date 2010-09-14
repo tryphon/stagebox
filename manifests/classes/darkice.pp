@@ -44,7 +44,7 @@ class darkice {
 }
 
 class darkice::safe {
-  file { "/usr/bin/darkice-safe":
+  file { "/usr/local/bin/darkice-safe":
     source => "$source_base/files/darkice/darkice-safe",
     mode => 775
   }

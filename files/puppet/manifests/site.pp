@@ -54,11 +54,6 @@ exec { "copy-var-model":
   tag => boot
 }
 
-exec { "amixerconf":
-  command => "/usr/local/bin/amixerconf",
-  tag => boot
-}
-
 file { "/etc/munin/plugins/cpu":
   ensure => "/usr/share/munin/plugins/cpu",
   notify => Service["munin-node"],
@@ -79,5 +74,18 @@ service { "munin-node":
 file { "/srv/pige/records":
   ensure => directory,
   owner => pige,
+  tag => boot,
+  require => Exec["storage-mount"]
+}
+
+exec { "storage-init":
+  command => "/usr/local/sbin/storage init --label=pige",
+  tag => boot
+}
+
+exec { "storage-mount":
+  command => "mount /srv/pige",
+  unless => "mount | grep /srv/pige",
+  require => Exec["storage-init"],
   tag => boot
 }

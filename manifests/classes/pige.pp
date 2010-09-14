@@ -18,7 +18,7 @@ class pige {
 
   include sox
   include pige::alsabackup
-  include pige::cron
+  include pige::crond
   include pige::storage
   include pige::lib
 }
@@ -53,7 +53,8 @@ class pige::lib {
   }
 }
 
-class pige::cron {
+class pige::crond {
+  include cron
 
   package { rake: }
 
@@ -69,8 +70,6 @@ class pige::cron {
 }
 
 class pige::storage {
-  include ::storage
-
   file { "/srv/pige":
     ensure => directory
   }
@@ -80,11 +79,11 @@ class pige::storage {
     line => "LABEL=pige /srv/pige ext3 defaults 0 0"
   }
 
-  include pige::storage::rsync
+  include pige::storage::rsyncd
 }
 
-class pige::storage::rsync {
-  include ::rsync
+class pige::storage::rsyncd {
+  include rsync
 
   file { "/etc/rsyncd.conf":
     source => "$source_base/files/rsync/rsyncd.conf"
@@ -102,29 +101,3 @@ class pige::storage::rsync {
   }
 
 }
-
-#class pige::frontend {
-#  include apt::tryphon
-#  include apache::passenger
-#
-#  file { "/etc/pige/database.yml":
-#    source => "$source_base/files/pige/database.yml",
-#    require => Package[pige]
-#  }
-#  file { "/etc/pige/production.rb":
-#    source => "$source_base/files/pige/production.rb",
-#    require => Package[pige]
-#  }
-#  package { pige: 
-#    ensure => latest,
-#    require => [Apt::Source[tryphon], Package[libapache2-mod-passenger]]
-#  }
-#  apt::source::pin { libtag1c2a:
-#    source => "lenny-backports"
-#  }
-#  
-#  file { "/var/log.model/pige": 
-#    ensure => directory, 
-#    owner => www-data
-#  }
-#}

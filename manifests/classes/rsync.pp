@@ -1,4 +1,0 @@
-class rsync {
-  package { rsync: }
-}
-
