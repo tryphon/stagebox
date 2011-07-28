@@ -12,9 +12,11 @@ include box
 include box::audio
 include box::storage
 
+include apache
+include apache::dnssd
+
 $darkice_user = "stream"
 include users
 include darkice::full
-include darkice::safe
 include icecast2
 include pige

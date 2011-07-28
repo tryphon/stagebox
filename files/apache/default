@@ -1,0 +1,12 @@
+<VirtualHost *:80>      
+  ServerName stagebox.local
+  ServerAdmin support@tryphon.eu
+
+  DNSSDServiceName "Tryphon StageBox"
+
+  LogLevel warn
+
+  # Use only syslog
+  ErrorLog syslog
+  CustomLog "|/usr/bin/logger -p local1.info -t apache2/access" combined
+</VirtualHost>
