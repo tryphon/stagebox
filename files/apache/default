@@ -4,6 +4,17 @@
 
   DNSSDServiceName "Tryphon StageBox"
 
+  DocumentRoot /usr/share/stagecontrol/public
+  PassengerDefaultUser www-data
+  PassengerMaxPoolSize 3
+  PassengerMaxRequests 1000
+  PassengerLogLevel 3
+  <Directory /usr/share/stagecontrol/public>
+     AllowOverride None
+     Order allow,deny
+     Allow from all
+  </Directory>
+
   LogLevel warn
 
   # Use only syslog

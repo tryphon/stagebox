@@ -21,6 +21,7 @@ class pige {
   include pige::crond
   include pige::storage
   include pige::lib
+  include pige::manifest
 }
 
 class pige::alsabackup {
@@ -70,15 +71,6 @@ class pige::crond {
 }
 
 class pige::storage {
-  file { "/srv/pige":
-    ensure => directory
-  }
-
-  line { "fstab-pige":
-    file => "/etc/fstab",
-    line => "LABEL=pige /srv/pige ext3 defaults 0 0"
-  }
-
   include pige::storage::rsyncd
 }
 
@@ -91,5 +83,11 @@ class pige::storage::rsyncd {
 
   file { "/etc/default/rsync":
     source => "$source_base/files/rsync/rsync.default"
+  }
+}
+
+class pige::manifest {
+  file { "/etc/puppet/manifests/classes/pige.pp":
+    source => "puppet:///files/pige/manifest.pp"
   }
 }

@@ -1,12 +1,17 @@
+GIT
+  remote: git://projects.tryphon.eu/system-builder
+  revision: 75dfae9d882922e7099f22370e602e8c2b212cd9
+  specs:
+    system-builder (0.0.26)
+
 GEM
   remote: http://rubygems.org/
   specs:
     rake (0.9.2)
-    system-builder (0.0.22)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rake
-  system-builder (>= 0.0.10)
+  system-builder!

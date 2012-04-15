@@ -6,10 +6,10 @@ import "box"
 
 $source_base="/tmp/puppet"
 
-$box_name="stagebox"
 include box
 
 include box::audio
+$box_storage_name="pige"
 include box::storage
 
 include apache
@@ -19,4 +19,5 @@ $darkice_user = "stream"
 include users
 include darkice::full
 include icecast2
+include stagecontrol
 include pige
