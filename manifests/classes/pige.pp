@@ -12,6 +12,13 @@ class pige {
     source => "$source_base/files/pige/pige.rake"
   }
 
+  ruby::gem { rsox-command: ensure => latest }
+
+  file { "/usr/local/bin/remove-silent-file":
+    mode => 755,
+    source => "puppet:///files/pige/remove-silent-file"
+  }
+
   user { pige:
     groups => [audio]
   }

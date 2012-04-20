@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PATH=$PATH:/var/lib/gems/1.8/bin
+
+if silent-file $1; then
+    logger -i -t "silent-file" "Remove $1"
+    rm $1
+fi
