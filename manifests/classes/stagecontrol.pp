@@ -1,6 +1,7 @@
 class stagecontrol {
   include apt::tryphon
   include apache::passenger
+  include apache::xsendfile
 
   # Not used for the moment
   readonly::mount_tmpfs { "/var/lib/stagecontrol": }
@@ -22,5 +23,10 @@ class stagecontrol {
   file { "/var/log.model/stagecontrol": 
     ensure => directory, 
     owner => www-data
+  }
+
+  file { "/etc/cron.hourly/clean-tempfiles":
+    mode => 755,
+    content => "#!/bin/sh\nfind /srv/pige/tmp -mmin +60 -type f | xargs -r rm"
   }
 }

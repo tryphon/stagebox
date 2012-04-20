@@ -15,6 +15,9 @@
      Allow from all
   </Directory>
 
+  XSendFile On
+  XSendFilePath /srv/pige/tmp
+
   LogLevel warn
 
   # Use only syslog

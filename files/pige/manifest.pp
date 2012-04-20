@@ -12,6 +12,14 @@ file { "/srv/pige/records":
   require => Exec["storage-mount-pige"]
 }
 
+file { "/srv/pige/tmp":
+  ensure => directory,
+  owner => root,
+  mode => 1777,
+  tag => boot,
+  require => Exec["storage-mount-pige"]
+}
+
 exec { "pige-create-db":
   creates => "/srv/pige/db/production.sqlite3",
   command => "cp /usr/share/stagecontrol/db/production.sqlite3 /srv/pige/db/production.sqlite3",

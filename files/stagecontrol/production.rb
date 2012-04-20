@@ -38,4 +38,5 @@ config.after_initialize do
   Release.install_command = "sudo /usr/local/sbin/box-upgrade"
 
   Record::Index.record_directory = "/srv/pige/records"
+  Record::Set.tmp_dir = "/srv/pige/tmp"
 end
