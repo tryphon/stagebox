@@ -27,6 +27,7 @@ class stagecontrol {
 
   file { "/etc/cron.hourly/clean-tempfiles":
     mode => 755,
-    content => "#!/bin/sh\nfind /srv/pige/tmp -mmin +60 -type f | xargs -r rm"
+    content => "#!/bin/sh\nfind /srv/pige/tmp -mmin +60 -type f | xargs -r rm", 
+    require => Package[cron]
   }
 }
