@@ -15,7 +15,7 @@ class stagecontrol {
     require => Package[stagecontrol]
   }
   package { stagecontrol: 
-    ensure => "latest",
+    ensure => "0.4-1lenny1",
     require => [Apt::Source[tryphon], Package[libapache2-mod-passenger]]
   }
 
