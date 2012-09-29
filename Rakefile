@@ -3,8 +3,14 @@ require 'rubygems'
 require 'system_builder'
 require 'system_builder/box_tasks'
 
-SystemBuilder::BoxTasks.new(:stagebox)
-task :buildbot => "stagebox:buildbot"
+SystemBuilder::BoxTasks.new(:stagebox) do |box|
+  box.disk_image do |image|
+    image.size = 300.megabytes
+  end
+end
+
+desc "Run continuous integration tasks (spec, ...)"
+task :ci => "stagebox:buildbot"
 
 namespace :stagebox do
   namespace :storage do
