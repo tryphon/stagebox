@@ -12,8 +12,6 @@ class pige {
     source => "$source_base/files/pige/pige.rake"
   }
 
-  ruby::gem { rsox-command: ensure => latest }
-
   file { "/usr/local/bin/remove-silent-file":
     mode => 755,
     source => "puppet:///files/pige/remove-silent-file"
@@ -24,6 +22,10 @@ class pige {
   }
 
   include sox
+
+  $records_status_on_silent = "warning"
+  include records
+
   include pige::alsabackup
   include pige::crond
   include pige::storage
