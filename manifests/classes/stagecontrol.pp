@@ -3,6 +3,8 @@ class stagecontrol {
   include apache::passenger
   include apache::xsendfile
 
+  include ruby::bundler
+
   # Not used for the moment
   readonly::mount_tmpfs { "/var/lib/stagecontrol": }
 
@@ -15,7 +17,7 @@ class stagecontrol {
     require => Package[stagecontrol]
   }
   package { stagecontrol: 
-    ensure => "0.4-1lenny1",
+    ensure => "0.5-1",
     require => [Apt::Source[tryphon], Package[libapache2-mod-passenger]]
   }
 

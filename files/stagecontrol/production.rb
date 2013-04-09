@@ -33,10 +33,6 @@ config.after_initialize do
 
   # Monitoring.munin_resources_directory = "/var/www/munin/local/"
 
-  Release.latest_url = "http://download.tryphon.eu/stagebox/latest.yml"
-  Release.current_url = "/boot/current.yml"
-  Release.install_command = "sudo /usr/local/sbin/box-upgrade"
-
-  Record::Index.record_directory = "/srv/pige/records"
-  Record::Set.tmp_dir = "/srv/pige/tmp"
+  Pige::Record::Index.record_directory = "/srv/pige/records"
+  Pige::Record::Set.tmp_dir = "/srv/pige/tmp"
 end
