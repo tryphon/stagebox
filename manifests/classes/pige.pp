@@ -40,10 +40,15 @@ class pige::alsabackup {
     require => Apt::Source[tryphon]
   }
 
+  file { "/usr/bin/alsa-backup":
+    source => "puppet:///files/pige/alsa-backup",
+    require => Package[alsa-backup]
+  }
+
   # TODO fix alsa-backup libraries names
   file { 
     "/usr/lib/libasound.so": ensure => "/usr/lib/libasound.so.2.0.0";
-    "/usr/lib/libsndfile.so": ensure => "/usr/lib/libsndfile.so.1.0.17"
+    "/usr/lib/libsndfile.so": ensure => "/usr/lib/libsndfile.so.1.0.21"
   } 
 
   file { "/etc/default/alsa-backup":
