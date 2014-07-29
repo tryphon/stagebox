@@ -21,3 +21,5 @@ include darkice::full
 include icecast2
 include stagecontrol
 include pige
+
+include 4channels_fallback
