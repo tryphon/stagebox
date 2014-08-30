@@ -1,0 +1,3 @@
+<% channel_count = scope.lookupvar('alsa::device_id') == "M44" ? 4 : 2 %>
+DAEMON_OPTS="backup --alsa-device=<%= scope.lookupvar('alsa::device') %> --alsa-channels=<%= channel_count %> --http-bind=:9000 -files-root=/srv/pige/records/ -files-close-handler=/usr/local/bin/remove-silent-file --log-syslog"
+DAEMON_USER="pige"
