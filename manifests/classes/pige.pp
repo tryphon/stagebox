@@ -2,7 +2,9 @@ class pige {
   $records_status_on_silent = "warning"
 
   # from Puppet-Box
-  include pige::base
+  class { 'pige::base':
+    web_application => 'stagecontrol',
+  }
 
   file { "/usr/local/bin/remove-silent-file":
     mode => 755,
