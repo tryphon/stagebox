@@ -11,4 +11,4 @@ SystemBuilder::BoxTasks.new(:stagebox) do |box|
 end
 
 desc "Run continuous integration tasks (spec, ...)"
-task :ci => "stagebox:buildbot"
+task :ci => "stagebox:ci"
