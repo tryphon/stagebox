@@ -1,4 +1,4 @@
-<VirtualHost *:80>      
+<VirtualHost *:80>
   ServerName stagebox.local
   ServerAdmin support@tryphon.eu
 
@@ -8,7 +8,6 @@
   PassengerDefaultUser www-data
   PassengerMaxPoolSize 3
   PassengerMaxRequests 1000
-  PassengerLogLevel 3
   <Directory /usr/share/stagecontrol/public>
      AllowOverride None
      Order allow,deny
