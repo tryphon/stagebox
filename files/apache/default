@@ -14,18 +14,6 @@
      Allow from all
   </Directory>
 
-	Alias /munin /var/www/munin
-	<Directory /var/www/munin>
-		Options Indexes FollowSymLinks MultiViews
-		AllowOverride None
-		Order allow,deny
-		Allow from all
-	</Directory>
-
-  <Location /munin>
-    PassengerEnabled off
-  </Location>
-
   XSendFile On
   XSendFilePath /srv/pige/tmp
 
