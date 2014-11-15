@@ -17,7 +17,7 @@ class stagecontrol {
     require => Package['stagecontrol']
   }
   package { stagecontrol:
-    ensure => '0.7-1+build25',
+    ensure => '0.7-1+build26',
     require => [Apt::Source['tryphon-dev'], Package['libapache2-mod-passenger']]
   }
 

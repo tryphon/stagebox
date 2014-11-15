@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://projects.tryphon.priv/box
-  revision: 1abefc9d527327761e07a584238bd092fe6e52bb
+  revision: 7be67ad907fe40dbc48089926ad859b5b82f86cb
   specs:
-    tryphon-box (0.21)
+    tryphon-box (1.01)
       activesupport (~> 3.2.17)
       facter (~> 1.7.5)
       httparty
@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://projects.tryphon.priv/system-builder
-  revision: d53be174b4d99f30a8bc7a31f6d6fe51b20a42f1
+  revision: b383b31859bf58048281006a63489da9d3f02022
   specs:
     system-builder (0.0.26)
       qemu
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: git://projects.tryphon.priv/vmbox
-  revision: 0436a496744aa8dbb11fa6952eac06084547a0da
+  revision: cfcc92a2f9ae5392920fa40211f89186dc4c2e37
   specs:
     tryphon-vmbox (0.0.1)
       activesupport (~> 3.2.1)
