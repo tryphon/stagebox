@@ -11,6 +11,7 @@ class pige {
     source => "puppet:///files/pige/remove-silent-file"
   }
 
+  include sox::ruby
   include pige::storage::rsyncd
 }
 
